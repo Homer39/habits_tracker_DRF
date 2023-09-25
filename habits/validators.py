@@ -39,6 +39,9 @@ class NiceHabitValidator:
             raise serializers.ValidationError(
                 "У приятной привычки не может быть вознаграждения или связанной привычки")
 
-# class HabitPeriodValidator:
-#     def __call__(self, value):
-#         period = dict(value).get('period')
+
+class HabitPeriodValidator:
+    def __call__(self, value):
+        period = dict(value).get('period')
+        if isinstance(period, int) and period > 7:
+            raise serializers.ValidationError("Переодичность не может быть больше 7 дней")
