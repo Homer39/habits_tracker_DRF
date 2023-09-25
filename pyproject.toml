@@ -19,6 +19,7 @@ django-celery-beat = "^2.5.0"
 django-filter = "^23.3"
 drf-yasg = "^1.21.7"
 django-rename-app = "^0.1.6"
+requests = "^2.31.0"
 
 
 [build-system]
