@@ -1,7 +1,8 @@
 from habits.models import Habit
 from rest_framework import serializers
 
-from habits.validators import HabitLengthValidator, NiceHabitValidator, LinkedAndRewardValidator, LinkedIsNiceValidator
+from habits.validators import HabitLengthValidator, NiceHabitValidator, LinkedAndRewardValidator, LinkedIsNiceValidator, \
+    HabitPeriodValidator
 
 
 class HabitSerializer(serializers.ModelSerializer):
@@ -11,6 +12,6 @@ class HabitSerializer(serializers.ModelSerializer):
         model = Habit
         fields = "__all__"
         validators = [
-            LinkedAndRewardValidator, HabitLengthValidator, LinkedIsNiceValidator,
-            NiceHabitValidator
+            LinkedAndRewardValidator(), HabitLengthValidator(), LinkedIsNiceValidator(),
+            NiceHabitValidator(), HabitPeriodValidator()
         ]

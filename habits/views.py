@@ -14,7 +14,7 @@ class HabitCreateAPIView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         new_habit = serializer.save()
-        new_habit.user = self.request.user
+        new_habit.owner = self.request.user
         new_habit.save()
 
 
@@ -22,7 +22,10 @@ class HabitListAPIView(generics.ListAPIView):
     """Контролер для просмотра привычек пользователя"""
     serializer_class = HabitSerializer
     pagination_class = HabitPaginator
-    permission_classes = [IsOwner]
+    permission_classes = [IsAuthenticated]
+
+    def get_queryset(self):
+        return Habit.objects.filter(owner=self.request.user)
 
 
 class PublicHabitListAPIView(generics.ListAPIView):
@@ -37,18 +40,18 @@ class PublicHabitListAPIView(generics.ListAPIView):
 class HabitRetrieveAPIView(generics.RetrieveAPIView):
     """Контролер для просмотр одной привычке по id"""
     serializer_class = HabitSerializer
-    permission_classes = [IsAuthenticated, IsOwner]
+    permission_classes = [IsAuthenticated | IsOwner]
 
 
 class HabitUpdateAPIView(generics.UpdateAPIView):
     """Изменение данных привычки"""
     serializer_class = HabitSerializer
     queryset = Habit.objects.all()
-    permission_classes = [IsAuthenticated, IsOwner]
+    permission_classes = [IsAuthenticated | IsOwner]
 
 
 class HabitDestroyAPIView(generics.DestroyAPIView):
     """Удаление привычки"""
     serializer_class = HabitSerializer
     queryset = Habit.objects.all()
-    permission_classes = [IsAuthenticated, IsOwner]
+    permission_classes = [IsAuthenticated | IsOwner]
