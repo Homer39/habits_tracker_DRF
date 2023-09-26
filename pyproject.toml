@@ -20,6 +20,7 @@ django-filter = "^23.3"
 drf-yasg = "^1.21.7"
 django-rename-app = "^0.1.6"
 requests = "^2.31.0"
+eventlet = "^0.33.3"
 
 
 [build-system]
