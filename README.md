@@ -36,3 +36,15 @@ celery -A config beat -l info -S django
 * swagger, drf-yasg
 * Telegram
 * unittest
+
+Для работы с переменными окружения необходимо создать файл .env и заполнить его данными из .env.sample
+
+
+Для создания образа из Dockerfile запустите команду 
+docker-compose build
+
+Для запуска контейнера используйте команду 
+docker-compose up
+
+Для остановки контейнера используйте команду 
+docker-compose down
