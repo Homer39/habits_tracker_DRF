@@ -37,9 +37,10 @@ celery -A config beat -l info -S django
 * Telegram
 * unittest
 
+## Переменные окружения
 Для работы с переменными окружения необходимо создать файл .env и заполнить его данными из .env.sample
 
-
+## Docker
 Для создания образа из Dockerfile запустите команду 
 docker-compose build
 
