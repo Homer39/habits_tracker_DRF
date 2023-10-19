@@ -88,9 +88,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'habits_tracker',
-        'USER': os.getenv('user'),
-        'PASSWORD': os.getenv('password')
+        # 'NAME': 'habits_tracker',
+        'NAME': 'postgres',
+        'HOST': 'db',
+        'USER': os.getenv('POSTGRES_USER'),
+        'PASSWORD': os.getenv('POSTGRES_PASSWORD')
     }
 }
 
@@ -154,9 +156,9 @@ TG_TOKEN = os.getenv('TG_TOKEN')
 
 # Настройка для Celery
 # URL-адрес брокера сообщений
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = "redis://redis:6379/0"
 # URL-адрес брокера результатов
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = "redis://redis:6379/0"
 
 CELERY_TASK_TRACK_STARTED = True
 
